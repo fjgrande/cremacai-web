@@ -1,0 +1,127 @@
+---
+import type { LocationInfo } from "../data/types";
+
+// Aquí no usamos "interface Props" con varios campos sueltos: en su lugar
+// reutilizamos un solo objeto ya tipado (LocationInfo). Es una técnica muy
+// común: cuando varias props "viajan juntas", agrúpalas en un tipo en vez
+// de listar 5 props sueltas.
+interface Props {
+  info: LocationInfo;
+}
+
+const { info } = Astro.props;
+---
+
+<section class="location" id="ubicacion">
+  <div class="wrap">
+    <div class="header-row">
+      <p class="eyebrow">Visítanos</p>
+      <h2>Encuéntranos en el mapa</h2>
+    </div>
+    <div class="card">
+      <div class="map">
+        <iframe
+          src={info.mapEmbedSrc}
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <div class="details">
+        <h3>cremaçai</h3>
+        <p><strong>Dirección:</strong> {info.address}</p>
+        <p><strong>Horario:</strong> {info.hours}</p>
+        {
+          info.phone && (
+            <p>
+              <strong>Teléfono:</strong> {info.phone}
+            </p>
+          )
+        }
+        <a
+          href={info.directionsHref}
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener"
+        >
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .location {
+    background: var(--cream-2);
+    padding: 96px 24px;
+  }
+  .location .header-row {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .location .eyebrow {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .location h2 {
+    font-size: 36px;
+    color: var(--maroon);
+    margin-top: 12px;
+  }
+  .location .card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(107, 23, 48, 0.1);
+  }
+  .location .map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    border: 0;
+    filter: saturate(0.9);
+  }
+  .location .details {
+    padding: 40px;
+  }
+  .location .details h3 {
+    font-size: 22px;
+    color: var(--maroon);
+    margin-bottom: 16px;
+  }
+  .location .details p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #4a3a3e;
+  }
+  .location .details .btn-primary {
+    margin-top: 20px;
+    background: var(--maroon);
+    color: var(--cream);
+  }
+
+  @media (max-width: 840px) {
+    .location .card {
+      grid-template-columns: 1fr;
+    }
+    .location .map iframe {
+      min-height: 260px;
+    }
+  }
+  @media (max-width: 600px) {
+    .location {
+      padding: 56px 20px;
+    }
+    .location h2 {
+      font-size: 28px;
+    }
+    .location .details {
+      padding: 28px 24px;
+    }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+const year = new Date().getFullYear();
+// "new Date().getFullYear()" devuelve un number. Al usarlo en {year} más
+// abajo, TypeScript ya sabe que es number, no hace falta anotarlo a mano:
+// esto también es "inferencia de tipos".
+---
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="col">
+      <p class="logo-word">cremaçai</p>
+      <p>Gelats i sorbets artesanals</p>
+      <p>La vida sabe mejor cuando se mezcla</p>
+    </div>
+    <div class="col">
+      <p><strong style="color: var(--cream)">Contacto</strong></p>
+      <a href="#">hola@cremacai.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">Google Maps</a>
+    </div>
+  </div>
+  <div class="bottom">© {year} cremaçai. Todos los derechos reservados.</div>
+</footer>
+
+<style>
+  footer {
+    background: var(--maroon-dark);
+    color: var(--cream-2);
+    padding: 56px 24px 32px;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  footer .logo-word {
+    color: var(--cream);
+    font-size: 22px;
+  }
+  footer .col p,
+  footer .col a {
+    font-size: 14px;
+    color: var(--cream-2);
+    display: block;
+    margin-top: 8px;
+  }
+  footer .bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    font-size: 12.5px;
+    color: rgba(251, 243, 228, 0.55);
+  }
+  @media (max-width: 600px) {
+    footer .wrap {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>

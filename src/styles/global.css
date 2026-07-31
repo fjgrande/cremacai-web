@@ -1,0 +1,81 @@
+:root {
+  --maroon: #6b1730;
+  --maroon-dark: #4a0f21;
+  --mustard: #e8a33d;
+  --green: #4b7a3e;
+  --blue: #3e6fa8;
+  --cream: #fbf3e4;
+  --cream-2: #f3e6cc;
+  --ink: #2a1a1f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo-word {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--mustard);
+  color: var(--maroon-dark);
+}
+
+.btn-outline {
+  border: 2px solid var(--cream-2);
+  color: var(--cream);
+}
+
+@media (min-width: 1400px) {
+  .wrap {
+    max-width: 1280px;
+  }
+}
