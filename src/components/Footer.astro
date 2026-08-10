@@ -1,62 +1,46 @@
 ---
+import { navLinks, instagramUrl } from "../data/site";
+
 const year = new Date().getFullYear();
-// "new Date().getFullYear()" devuelve un number. Al usarlo en {year} más
-// abajo, TypeScript ya sabe que es number, no hace falta anotarlo a mano:
-// esto también es "inferencia de tipos".
 ---
 
-<footer id="contacto">
-  <div class="wrap">
-    <div class="col">
-      <p class="logo-word">cremaçai</p>
-      <p>Gelats i sorbets artesanals</p>
-      <p>La vida sabe mejor cuando se mezcla</p>
-    </div>
-    <div class="col">
-      <p><strong style="color: var(--cream)">Contacto</strong></p>
-      <a href="#">hola@cremacai.com</a>
-      <a href="#">Instagram</a>
-      <a href="#">Google Maps</a>
-    </div>
-  </div>
-  <div class="bottom">© {year} cremaçai. Todos los derechos reservados.</div>
+<footer>
+	<div class="wrap">
+		<div>
+			<div class="logo-word">cremaçai</div>
+			<div class="slogan">La vida sabe mejor cuando se mezcla.</div>
+		</div>
+		<ul>
+			{navLinks.map((link) => (
+				<li><a href={link.href}>{link.label}</a></li>
+			))}
+		</ul>
+		<div class="socials">
+			<a href={instagramUrl} aria-label="Instagram" target="_blank" rel="noopener">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+					<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>
+					<circle cx="17.3" cy="6.7" r="1.1" fill="#fff" stroke="none"/>
+				</svg>
+			</a>
+		</div>
+	</div>
+	<div class="bottom">© {year} cremaçai. Todos los derechos reservados.</div>
 </footer>
 
 <style>
-  footer {
-    background: var(--maroon-dark);
-    color: var(--cream-2);
-    padding: 56px 24px 32px;
-  }
-  footer .wrap {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 32px;
-  }
-  footer .logo-word {
-    color: var(--cream);
-    font-size: 22px;
-  }
-  footer .col p,
-  footer .col a {
-    font-size: 14px;
-    color: var(--cream-2);
-    display: block;
-    margin-top: 8px;
-  }
-  footer .bottom {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    text-align: center;
-    font-size: 12.5px;
-    color: rgba(251, 243, 228, 0.55);
-  }
-  @media (max-width: 600px) {
-    footer .wrap {
-      flex-direction: column;
-      gap: 24px;
-    }
-  }
+	footer{background:var(--maroon);color:var(--cream-2);padding:28px 20px;text-align:center;}
+	footer .logo-word{font-family:'Baloo 2',sans-serif;color:var(--cream);font-size:19px;}
+	footer .slogan{font-size:11.5px;margin-top:2px;color:var(--cream-2);}
+	footer ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin:18px 0;}
+	footer ul li a{font-size:13px;font-weight:500;}
+	footer .socials{display:flex;gap:14px;justify-content:center;}
+	footer .socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;}
+	footer .bottom{margin-top:18px;font-size:11px;opacity:0.7;}
+
+	@media (min-width:760px){
+		footer{padding:32px}
+		footer .wrap{display:flex;justify-content:space-between;align-items:center;text-align:left;}
+		footer ul{flex-direction:row;gap:24px;margin:0;}
+		footer .socials{margin:0;}
+	}
 </style>

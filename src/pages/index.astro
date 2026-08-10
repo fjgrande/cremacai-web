@@ -3,33 +3,31 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import PatternBand from "../components/PatternBand.astro";
-import About from "../components/About.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import Builder from "../components/Builder.astro";
+import FeaturesRow from "../components/FeaturesRow.astro";
 import Location from "../components/Location.astro";
 import Footer from "../components/Footer.astro";
-import { features, location } from "../data/site";
+import { products, location } from "../data/site";
 ---
 
 <Layout title="Cremaçai — Gelats i sorbets artesanals">
-  <Header />
+	<Header />
 
-  <Hero
-    title="cremaçai"
-    tagline="La vida sabe mejor cuando se mezcla. Açaí bowls y helados artesanales hechos cada día, con fruta de verdad."
-    imageSrc="/assets/bowl-hero.png"
-    imageAlt="Bowl de açaí cremaçai con toppings, chocolate y flor comestible"
-  />
+	<Hero
+		imageSrc="/assets/producto-real.jpg"
+		imageAlt="Bowlaçaí cremaçai con toppings, chocolate y flor comestible"
+	/>
 
-  <PatternBand />
+	<ProductGrid products={products} />
 
-  <About
-    features={features}
-    imageSrc="/assets/producto.png"
-    imageAlt="Bowl de açaí cremaçai con toppings"
-  />
+	<Builder />
 
-  <PatternBand />
+	<PatternBand />
 
-  <Location info={location} />
+	<FeaturesRow />
 
-  <Footer />
+	<Location info={location} />
+
+	<Footer />
 </Layout>

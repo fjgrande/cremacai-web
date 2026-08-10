@@ -7,34 +7,34 @@ import "../styles/global.css";
 // parecida a "type"); Astro la usa por convención para tipar las Props
 // que un componente recibe desde fuera.
 interface Props {
-  title: string;
-  description?: string; // opcional: si no se pasa, usamos un valor por defecto abajo
+	title: string;
+	description?: string; // opcional: si no se pasa, usamos un valor por defecto abajo
 }
 
 // Destructuring con valor por defecto: si no llega "description",
 // TypeScript sabe que aquí SIEMPRE habrá un string válido.
 const {
-  title,
-  description = "Gelats i sorbets artesanals a Barcelona. La vida sabe mejor cuando se mezcla.",
+	title,
+	description = "Gelats i sorbets artesanals a Barcelona. La vida sabe mejor cuando se mezcla.",
 } = Astro.props;
 ---
 
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <slot />
-    <!-- <slot /> es donde Astro inserta el contenido que le pasemos
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<slot />
+		<!-- <slot /> es donde Astro inserta el contenido que le pasemos
 		     entre <Layout>...</Layout> desde cada página. -->
-  </body>
+	</body>
 </html>

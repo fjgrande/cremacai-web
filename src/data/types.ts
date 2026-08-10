@@ -1,23 +1,40 @@
 export type NavLink = {
-  label: string;
-  href: string;
+	label: string;
+	href: string;
 };
 
-// Un "union type" (con el símbolo |) dice: este valor SOLO puede ser
-// uno de estos strings exactos, ningún otro. Si en otro archivo escribes
-// color: "rojo", TypeScript te dará error antes de que llegue a producción.
 export type DotColor = "maroon" | "mustard" | "green" | "blue";
 
 export type Feature = {
-  label: string;
-  color: DotColor;
+	label: string;
+	color: DotColor;
 };
 
-// El "?" marca una propiedad como opcional: se puede omitir al usar el tipo.
 export type LocationInfo = {
-  address: string;
-  phone?: string;
-  hours: string;
-  mapEmbedSrc: string;
-  directionsHref: string;
+	address: string;
+	phone?: string;
+	hours: string;
+	mapEmbedSrc: string;
+	directionsHref: string;
+	storefrontImage: string;
+	storefrontAlt: string;
+};
+
+// Un producto del grid "Nuestros imprescindibles". La imagen es opcional:
+// si todavía no tenemos la foto real, el componente sabe mostrar un
+// placeholder en su lugar (lo verás en ProductGrid.astro).
+export type Product = {
+	name: string;
+	description: string;
+	image?: string;
+	href: string;
+};
+
+// Un bloque de la página "Nuestra Mezcla": texto + imagen alternando de lado.
+export type StoryBlock = {
+	heading: string;
+	paragraphs: string[];
+	image?: string;
+	imageAlt?: string;
+	reverse?: boolean;
 };

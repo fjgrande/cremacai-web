@@ -1,0 +1,60 @@
+---
+// Los 4 iconos son de línea (mismo estilo que el pin/Instagram), sin
+// emoji: se veía demasiado decorado. Están fijos aquí porque son
+// contenido de marca, no algo que vaya a cambiar seguido.
+---
+
+<section class="features-row">
+	<div class="wrap grid">
+		<div class="item">
+			<div class="circle" style="background:#D9E6D3;color:var(--green);">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+					<path d="M5 20c9 0 14-5 14-14-9 0-14 5-14 14z"/><path d="M5 20c0-6 3-9 9-11"/>
+				</svg>
+			</div>
+			<h4>Ingredientes de calidad</h4>
+			<p>Açaí Premium y productos seleccionados.</p>
+		</div>
+		<div class="item">
+			<div class="circle" style="background:#F4C9CE;color:var(--maroon);">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+					<path d="M12 20s-7-4.5-9.5-9C1 7.5 3 4 6.5 4c2 0 3.5 1.2 4.5 2.8C12 5.2 13.5 4 15.5 4 19 4 21 7.5 21.5 11c-2.5 4.5-9.5 9-9.5 9z"/>
+				</svg>
+			</div>
+			<h4>Hecho con pasión</h4>
+			<p>Recetas artesanales llenas de sabor.</p>
+		</div>
+		<div class="item">
+			<div class="circle" style="background:#DCE7F4;color:var(--blue);">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+					<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-6-4-9s1.5-6.5 4-9z"/>
+				</svg>
+			</div>
+			<h4>Sabores que viajan</h4>
+			<p>Inspirados en destinos únicos.</p>
+		</div>
+		<div class="item">
+			<div class="circle" style="background:#FBEAC7;color:var(--mustard);">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M12 2l2.9 6.5 7.1.7-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7-5.4-4.7 7.1-.7z"/>
+				</svg>
+			</div>
+			<h4>Experiencia completa</h4>
+			<p>Más que un producto, un momento.</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.features-row{padding:48px 20px;}
+	.features-row .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+	.features-row .item{text-align:center;}
+	.features-row .circle{width:54px;height:54px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;}
+	.features-row h4{font-family:'Baloo 2',sans-serif;font-size:14px;color:var(--maroon);margin-bottom:4px;}
+	.features-row p{font-size:12px;color:#6b5a5e;}
+
+	@media (min-width:760px){
+		.features-row{padding:64px 32px;}
+		.features-row .grid{grid-template-columns:repeat(4,1fr);}
+	}
+</style>

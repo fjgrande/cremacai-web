@@ -1,0 +1,44 @@
+---
+import type { StoryBlock } from "../data/types";
+
+// Reutilizamos el nombre del tipo como nombre de las Props: esto es
+// válido en TypeScript (son dos "espacios de nombres" distintos, tipos
+// vs valores), aunque si te resulta confuso, también podrías escribir
+// "interface Props extends StoryBlockData".
+interface Props extends StoryBlock {}
+
+const { heading, paragraphs, image, imageAlt, reverse = false } = Astro.props;
+---
+
+<section class:list={["story-block", { reverse }]}>
+	<div class="wrap">
+		<div class="media">
+			{image ? (
+				<img src={image} alt={imageAlt ?? heading} />
+			) : (
+				<div class="placeholder-photo">Foto pendiente</div>
+			)}
+		</div>
+		<div class="copy">
+			<h2>{heading}</h2>
+			{paragraphs.map((p) => <p>{p}</p>)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.story-block{padding:38px 20px;}
+	.story-block .wrap{display:flex;flex-direction:column;gap:20px;}
+	.story-block .media{border-radius:18px;overflow:hidden;height:220px;}
+	.story-block .media img{width:100%;height:100%;object-fit:cover;}
+	.story-block h2{font-family:'Baloo 2',sans-serif;font-size:24px;color:var(--maroon);margin-bottom:10px;}
+	.story-block p{font-size:14.5px;color:#5a4145;margin-bottom:6px;}
+
+	@media (min-width:760px){
+		.story-block{padding:64px 32px;}
+		.story-block .wrap{flex-direction:row;align-items:center;gap:56px;}
+		.story-block.reverse .wrap{flex-direction:row-reverse;}
+		.story-block .media,.story-block .copy{flex:1;}
+		.story-block .media{height:320px;}
+	}
+</style>

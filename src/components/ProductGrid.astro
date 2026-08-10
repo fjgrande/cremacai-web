@@ -1,0 +1,48 @@
+---
+import type { Product } from "../data/types";
+
+interface Props {
+	products: Product[];
+}
+
+const { products } = Astro.props;
+---
+
+<section class="imprescindibles" id="menu">
+	<div class="wrap">
+		<h2>Nuestros imprescindibles</h2>
+		<div class="prod-grid">
+			{products.map((product) => (
+				<div class="prod-card">
+					{product.image ? (
+						<img src={product.image} alt={product.name} class="prod-photo" />
+					) : (
+						<div class="placeholder-photo">Foto pendiente</div>
+					)}
+					<h3>{product.name}</h3>
+					<p>{product.description}</p>
+					<a href={product.href}>Ver más →</a>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.imprescindibles{padding:52px 20px;text-align:center;}
+	.imprescindibles h2{font-family:'Baloo 2',sans-serif;font-size:26px;color:var(--maroon);margin-bottom:28px;}
+	.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+	.prod-card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 10px 24px rgba(107,23,48,0.08);text-align:center;}
+	.prod-card .placeholder-photo,
+	.prod-card .prod-photo{height:110px;margin-bottom:12px;border-radius:14px;}
+	.prod-card .placeholder-photo{background:var(--cream-2);display:flex;align-items:center;justify-content:center;color:#8a6f52;font-size:12.5px;}
+	.prod-card .prod-photo{width:100%;object-fit:cover;}
+	.prod-card h3{font-family:'Baloo 2',sans-serif;font-size:16px;color:var(--maroon);margin-bottom:4px;}
+	.prod-card p{font-size:12.5px;color:#6b5a5e;margin-bottom:8px;}
+	.prod-card a{font-size:12.5px;font-weight:700;color:var(--mustard);text-decoration:underline;}
+
+	@media (min-width:760px){
+		.imprescindibles{padding:72px 32px;}
+		.prod-grid{grid-template-columns:repeat(4,1fr);}
+	}
+</style>

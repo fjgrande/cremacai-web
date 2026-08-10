@@ -1,0 +1,37 @@
+---
+// Sección "Creaçaí a tu manera". Sin Props por ahora: es contenido fijo,
+// no datos que vayan a cambiar desde fuera.
+---
+
+<section class="builder">
+	<div class="wrap">
+		<div class="copy">
+			<h2>Creaçaí a tu manera</h2>
+			<p class="desc">Elige hasta 2 frutas, 2 toppings y 1 salsa. Tú decides.</p>
+			<a href="#" class="btn btn-maroon">Crear mi bowl →</a>
+			<div class="features">
+				<div class="f"><span class="dot" style="background:#F4C9CE;"></span> Frutas frescas</div>
+				<div class="f"><span class="dot" style="background:#D9E6D3;"></span> Toppings irresistibles</div>
+				<div class="f"><span class="dot" style="background:#DCE7F4;"></span> Salsas deliciosas</div>
+			</div>
+		</div>
+		<div class="placeholder-photo builder-visual">Foto pendiente</div>
+	</div>
+</section>
+
+<style>
+	.builder{background:#F4C9CE;padding:52px 20px;}
+	.builder h2{font-family:'Baloo 2',sans-serif;font-size:26px;color:var(--maroon);}
+	.builder .desc{margin-top:10px;font-size:14.5px;color:#5a4145;}
+	.builder .btn{margin-top:18px;}
+	.builder .features{margin-top:26px;display:flex;flex-direction:column;gap:14px;}
+	.builder .features .f{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;}
+	.builder .features .dot{width:12px;height:12px;border-radius:50%;flex:none;}
+	.builder-visual{margin-top:32px;height:260px;}
+
+	@media (min-width:760px){
+		.builder{padding:72px 32px;}
+		.builder .wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;}
+		.builder-visual{margin-top:0;height:100%;min-height:320px;}
+	}
+</style>

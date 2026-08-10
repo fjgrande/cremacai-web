@@ -1,53 +1,13 @@
 ---
-// Componente sin Props: no todo tiene que recibir datos externos.
-// Se reutiliza tal cual, dos veces, en index.astro.
 ---
 
-<div class="pattern-band">
-  <svg viewBox="0 0 800 64" preserveAspectRatio="xMidYMid slice">
-    <g>
-      <path d="M0 0 L40 0 L40 32 A16 16 0 0 1 8 32 Z" fill="#E8A33D"></path>
-      <circle cx="88" cy="16" r="16" fill="#6B1730"></circle>
-      <path d="M120 32 L152 0 L152 32 Z" fill="#4B7A3E"></path>
-      <path d="M180 0 A16 16 0 0 1 212 0 Z" fill="#3E6FA8"></path>
-      <path d="M240 0 L272 0 L272 32 A16 16 0 0 1 240 32 Z" fill="#6B1730"
-      ></path>
-      <circle cx="320" cy="16" r="16" fill="#E8A33D"></circle>
-      <path d="M360 32 L392 0 L392 32 Z" fill="#3E6FA8"></path>
-      <path d="M420 0 A16 16 0 0 1 452 0 Z" fill="#4B7A3E"></path>
-      <path d="M480 0 L512 0 L512 32 A16 16 0 0 1 480 32 Z" fill="#3E6FA8"
-      ></path>
-      <circle cx="560" cy="16" r="16" fill="#4B7A3E"></circle>
-      <path d="M600 32 L632 0 L632 32 Z" fill="#E8A33D"></path>
-      <path d="M660 0 A16 16 0 0 1 692 0 Z" fill="#6B1730"></path>
-      <path d="M720 0 L752 0 L752 32 A16 16 0 0 1 720 32 Z" fill="#E8A33D"
-      ></path>
-      <circle cx="800" cy="16" r="16" fill="#4B7A3E"></circle>
-    </g>
-  </svg>
-</div>
+<div class="pattern-band"></div>
 
 <style>
-  .pattern-band {
-    height: 64px;
-    width: 100%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        transparent 0 4px,
-        rgba(0, 0, 0, 0.04) 4px 5px
-      ),
-      var(--cream-2);
-    overflow: hidden;
-  }
-  .pattern-band svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  @media (max-width: 600px) {
-    .pattern-band {
-      height: 44px;
-    }
-  }
+	.pattern-band{
+		height:40px;width:100%;
+		background-image:url('/assets/patron-textura.jpg');
+		background-size:auto 100%;
+		background-repeat:repeat-x;
+	}
 </style>

@@ -3,83 +3,75 @@ import { navLinks } from "../data/site";
 ---
 
 <header>
-  <nav class="wrap">
-    <span class="logo-word">cremaçai</span>
-    <ul>
-      {
-        navLinks.map((link) => (
-          <li>
-            <a href={link.href}>{link.label}</a>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="lang-switch">
-      <a href="#">ES</a><span>·</span><a href="#">CA</a><span>·</span><a
-        href="#">EN</a
-      ><span>·</span><a href="#">PT</a>
-    </div>
-  </nav>
+	<nav class="wrap">
+		<div class="brand">
+			<span class="logo-word">cremaçai</span>
+			<span class="slogan">La vida sabe mejor cuando se mezcla.</span>
+		</div>
+
+		<ul class="nav-links">
+			{navLinks.map((link) => (
+				<li><a href={link.href}>{link.label}</a></li>
+			))}
+		</ul>
+
+		<a href="/#ubicacion" class="btn btn-maroon cta-header">
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+				<path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+			</svg>
+			Cómo llegar
+		</a>
+
+		<button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+			<span></span><span></span><span></span>
+		</button>
+	</nav>
+
+	<div class="nav-panel" id="navPanel">
+		<ul>
+			{navLinks.map((link) => (
+				<li><a href={link.href}>{link.label}</a></li>
+			))}
+		</ul>
+		<a href="/#ubicacion" class="btn btn-maroon" style="width:100%;justify-content:center;">
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+				<path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+			</svg>
+			Cómo llegar
+		</a>
+	</div>
 </header>
 
 <style>
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--cream);
-    border-bottom: 1px solid rgba(107, 23, 48, 0.12);
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-  }
-  nav .logo-word {
-    font-size: 26px;
-    color: var(--maroon);
-  }
-  nav ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  nav ul li a {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  nav ul li a:hover {
-    color: var(--maroon);
-  }
-  .lang-switch {
-    display: flex;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--maroon);
-  }
-  .lang-switch span {
-    opacity: 0.45;
-    cursor: default;
-  }
+	header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid rgba(107,23,48,0.1);}
+	nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:16px;}
+	.brand{line-height:1.1;}
+	.brand .logo-word{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;color:var(--maroon);}
+	.brand .slogan{font-size:10.5px;color:#8a6f52;font-weight:500;display:none;}
+	.nav-links{list-style:none;display:none;gap:26px;align-items:center;}
+	.nav-links li a{font-size:14.5px;font-weight:600;color:var(--ink);}
+	.cta-header{display:none;}
+	.hamburger{display:flex;flex-direction:column;gap:4px;width:24px;background:none;border:0;cursor:pointer;}
+	.hamburger span{height:2.5px;background:var(--maroon);border-radius:2px;}
+	.nav-panel{display:none;position:fixed;inset:0;top:60px;background:var(--cream);z-index:40;padding:24px 20px;overflow-y:auto;}
+	.nav-panel.open{display:block;}
+	.nav-panel ul{list-style:none;display:flex;flex-direction:column;margin-bottom:20px;}
+	.nav-panel ul li a{display:block;padding:14px 4px;font-size:19px;font-weight:600;color:var(--maroon);border-bottom:1px solid rgba(107,23,48,0.08);}
 
-  @media (max-width: 840px) {
-    nav ul {
-      display: none;
-    }
-  }
-  @media (max-width: 600px) {
-    nav {
-      padding: 12px 20px;
-    }
-    nav .logo-word {
-      font-size: 22px;
-    }
-    .lang-switch {
-      font-size: 12px;
-      gap: 6px;
-    }
-  }
+	@media (min-width:760px){
+		.hamburger,.nav-panel{display:none !important;}
+		.nav-links{display:flex;}
+		.cta-header{display:inline-flex;}
+		.brand .slogan{display:block;}
+		nav{padding:18px 32px;}
+	}
 </style>
+
+<script>
+	const btn = document.getElementById("hamburgerBtn");
+	const panel = document.getElementById("navPanel");
+	btn?.addEventListener("click", () => panel?.classList.toggle("open"));
+	panel?.querySelectorAll("a").forEach((a) =>
+		a.addEventListener("click", () => panel?.classList.remove("open")),
+	);
+</script>
