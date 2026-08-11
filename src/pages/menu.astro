@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import MenuCategorySection from "../components/MenuCategorySection.astro";
+import Footer from "../components/Footer.astro";
+import { menuByLocale, localeLabels } from "../data/menu";
+import type { Locale } from "../data/types";
+
+// Object.entries + as convierte el Record en un array de pares
+// [locale, categorías] para poder recorrerlo con .map() en el template.
+const locales = Object.keys(menuByLocale) as Locale[];
+---
+
+<Layout title="Cremaçai — Nuestro Menú">
+	<Header />
+
+	<div class="menu-banner">
+		<img src="/assets/menu-banner.jpg" alt="cremaçai — La vida és més bona quan es barreja." />
+	</div>
+
+	<div class="lang-switch" id="langSwitch">
+		{locales.map((locale, i) => (
+			<button data-locale={locale} class:list={["lang-btn", { active: i === 0 }]}>
+				{localeLabels[locale]}
+			</button>
+		))}
+	</div>
+
+	{locales.map((locale, i) => (
+		<div class:list={["menu-locale", { hidden: i !== 0 }]} data-locale-panel={locale}>
+			<nav class="cat-nav">
+				<div class="scroll">
+					{menuByLocale[locale].map((cat) => <a href={`#${locale}-${cat.id}`}>{cat.title}</a>)}
+				</div>
+			</nav>
+
+			{menuByLocale[locale].map((category) => (
+				<MenuCategorySection category={{ ...category, id: `${locale}-${category.id}` }} />
+			))}
+		</div>
+	))}
+
+	<Footer />
+</Layout>
+
+<style>
+	.menu-banner{width:100%;overflow:hidden;}
+	.menu-banner img{width:100%;height:auto;display:block;}
+
+	.lang-switch{display:flex;gap:8px;justify-content:center;padding:16px 20px;background:var(--cream);}
+	.lang-btn{
+		font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--maroon);
+		background:var(--cream-2);border:2px solid transparent;padding:8px 20px;border-radius:100px;cursor:pointer;
+	}
+	.lang-btn.active{background:var(--maroon);color:var(--cream);}
+
+	.menu-locale.hidden{display:none;}
+
+	.cat-nav{position:sticky;top:57px;z-index:40;background:var(--cream);padding:12px 0;border-bottom:1px solid rgba(107,23,48,0.08);}
+	.cat-nav .scroll{display:flex;gap:8px;overflow-x:auto;padding:0 20px;max-width:1120px;margin:0 auto;}
+	.cat-nav a{
+		flex:none;font-size:13px;font-weight:600;color:var(--maroon);background:var(--cream-2);
+		padding:8px 16px;border-radius:100px;white-space:nowrap;
+	}
+
+	@media (min-width:760px){
+		.cat-nav{top:65px;}
+	}
+</style>
+
+<script>
+	// Cambio de idioma 100% en el navegador: no hay recarga de página ni
+	// llamada al servidor, solo mostramos/ocultamos los bloques que Astro
+	// ya generó de antemano para cada idioma (los tres vienen en el HTML
+	// desde el principio). Es una solución simple para este borrador;
+	// más adelante se puede migrar al sistema de rutas i18n de Astro
+	// (URLs del tipo /es/menu, /en/menu) si se quiere indexar cada
+	// idioma por separado en buscadores.
+	const buttons = document.querySelectorAll<HTMLButtonElement>(".lang-btn");
+	const panels = document.querySelectorAll<HTMLElement>("[data-locale-panel]");
+
+	buttons.forEach((button) => {
+		button.addEventListener("click", () => {
+			const target = button.dataset.locale;
+
+			buttons.forEach((b) => b.classList.toggle("active", b === button));
+			panels.forEach((panel) => {
+				panel.classList.toggle("hidden", panel.dataset.localePanel !== target);
+			});
+		});
+	});
+</script>

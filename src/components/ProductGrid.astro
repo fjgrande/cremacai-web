@@ -25,6 +25,14 @@ const { products } = Astro.props;
 				</div>
 			))}
 		</div>
+
+		<div class="creacai-summary">
+			<div class="text">
+				<h3>¿Prefieres crear el tuyo?</h3>
+				<p>Con Creaçaí eliges hasta 2 frutas, 2 toppings y 1 salsa. Tú decides la mezcla.</p>
+			</div>
+			<a href="/menu#creacai" class="btn btn-maroon">Ver precios y toppings →</a>
+		</div>
 	</div>
 </section>
 
@@ -41,8 +49,17 @@ const { products } = Astro.props;
 	.prod-card p{font-size:12.5px;color:#6b5a5e;margin-bottom:8px;}
 	.prod-card a{font-size:12.5px;font-weight:700;color:var(--mustard);text-decoration:underline;}
 
+	.creacai-summary{
+		margin-top:36px;background:#F4C9CE;border-radius:20px;padding:28px 24px;
+		display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;
+	}
+	.creacai-summary h3{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--maroon);margin-bottom:6px;}
+	.creacai-summary p{font-size:13.5px;color:#5a4145;max-width:360px;}
+
 	@media (min-width:760px){
 		.imprescindibles{padding:72px 32px;}
 		.prod-grid{grid-template-columns:repeat(4,1fr);}
+		.creacai-summary{flex-direction:row;justify-content:space-between;text-align:left;padding:32px 40px;}
+		.creacai-summary p{max-width:420px;}
 	}
 </style>

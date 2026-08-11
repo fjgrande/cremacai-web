@@ -2,9 +2,8 @@ import type { NavLink, Product, LocationInfo, StoryBlock } from "./types";
 
 export const navLinks: NavLink[] = [
 	{ label: "Inicio", href: "/" },
-	{ label: "Nuestro Menú", href: "/#menu" },
+	{ label: "Nuestro Menú", href: "/menu" },
 	{ label: "Nuestra Mezcla", href: "/nuestra-mezcla" },
-	{ label: "Sobre Nosotros", href: "/#" },
 	{ label: "Contacto", href: "/#ubicacion" },
 ];
 
@@ -15,22 +14,22 @@ export const products: Product[] = [
 		name: "Copaçaí",
 		description: "Viajes de sabores en cada capa.",
 		image: "/assets/producto-real.jpg",
-		href: "#",
+		href: "/menu#copacai",
 	},
 	{
 		name: "Bowlaçaí",
 		description: "Energía, frescura y bienestar.",
-		href: "#", // sin foto todavía: ProductGrid.astro mostrará un placeholder
+		href: "/menu#bowlacai", // sin foto todavía: ProductGrid.astro mostrará un placeholder
 	},
 	{
 		name: "Shakes",
 		description: "Mezclas cremosas que te enamoran.",
-		href: "#",
+		href: "/menu#shakes",
 	},
 	{
 		name: "Gelato",
 		description: "Artesanal, natural e irresistible.",
-		href: "#",
+		href: "/menu#gelato",
 	},
 ];
 

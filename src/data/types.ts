@@ -38,3 +38,33 @@ export type StoryBlock = {
 	imageAlt?: string;
 	reverse?: boolean;
 };
+
+// --- Menú ---
+
+export type Locale = "ca" | "es" | "en";
+
+export type MenuPrice = {
+	size?: string; // "S" | "M" | "L" | undefined si no hay tallas
+	amount: string;
+};
+
+export type MenuItem = {
+	name: string;
+	origin?: string; // el "viaje" tipo "De l'Amazones a la Costa Amalfitana"
+	description?: string;
+	prices: MenuPrice[];
+};
+
+export type ToppingGroup = {
+	label: string;
+	items: string[];
+};
+
+export type MenuCategory = {
+	id: string; // usado como ancla: /menu#id
+	title: string;
+	subtitle?: string;
+	items: MenuItem[];
+	note?: string;
+	toppingGroups?: ToppingGroup[];
+};

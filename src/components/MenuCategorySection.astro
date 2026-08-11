@@ -1,0 +1,83 @@
+---
+import type { MenuCategory } from "../data/types";
+
+interface Props {
+	category: MenuCategory;
+}
+
+const { category } = Astro.props;
+---
+
+<section class="category" id={category.id}>
+	<div class="wrap">
+		<h2>{category.title}</h2>
+		{category.subtitle && <p class="sub">{category.subtitle}</p>}
+
+		<div class="items">
+			{category.items.map((item) => (
+				<div class="item">
+					<div class="left">
+						<div class="name">{item.name}</div>
+						{item.origin && <div class="origin">{item.origin}</div>}
+						{item.description && <div class="desc">{item.description}</div>}
+					</div>
+					<div class="prices">
+						{item.prices.map((p) => (
+							<div class="price-row">
+								{p.size && <span class="size">{p.size}</span>}
+								<span class="amount">{p.amount}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+
+		{category.note && <p class="note-inline">{category.note}</p>}
+
+		{category.toppingGroups && (
+			<div class="builder-detail">
+				<h3>Toppings disponibles</h3>
+				<div class="cols">
+					{category.toppingGroups.map((group) => (
+						<div class="col">
+							<h4>{group.label}</h4>
+							<ul>
+								{group.items.map((topping) => <li>{topping}</li>)}
+							</ul>
+						</div>
+					))}
+				</div>
+			</div>
+		)}
+	</div>
+</section>
+
+<style>
+	.category{padding:36px 20px;}
+	.category h2{font-size:24px;color:var(--maroon);margin-bottom:4px;}
+	.category .sub{font-size:12.5px;color:#8a6f52;margin-bottom:20px;}
+	.items{display:flex;flex-direction:column;gap:4px;}
+	.item{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(107,23,48,0.08);}
+	.item .left{flex:1;}
+	.item .name{font-weight:700;font-size:16px;color:var(--ink);}
+	.item .origin{font-size:11.5px;color:var(--green);font-weight:600;margin-top:1px;}
+	.item .desc{font-size:13px;color:#6b5a5e;margin-top:4px;}
+	.item .prices{flex:none;text-align:right;display:flex;flex-direction:column;gap:2px;min-width:100px;}
+	.price-row{display:flex;justify-content:flex-end;align-items:center;gap:6px;font-size:13.5px;}
+	.price-row .size{font-size:10.5px;font-weight:700;color:#8a6f52;background:var(--cream-2);border-radius:5px;padding:1px 5px;}
+	.price-row .amount{font-weight:700;color:var(--maroon);}
+	.note-inline{margin-top:16px;font-size:12.5px;color:#8a6f52;font-style:italic;}
+
+	.builder-detail{background:#F4C9CE;border-radius:18px;padding:22px;margin-top:16px;}
+	.builder-detail h3{font-size:15px;color:var(--maroon);margin-bottom:8px;}
+	.builder-detail .cols{display:grid;grid-template-columns:1fr;gap:16px;margin-top:10px;}
+	.builder-detail .col h4{font-size:13px;color:var(--maroon-dark);margin-bottom:6px;}
+	.builder-detail .col ul{list-style:none;font-size:12.5px;color:#5a4145;display:flex;flex-wrap:wrap;gap:6px;}
+	.builder-detail .col ul li{background:#fff;padding:4px 10px;border-radius:100px;}
+
+	@media (min-width:760px){
+		.category{padding:56px 32px;}
+		.builder-detail .cols{grid-template-columns:1fr 1fr;}
+	}
+</style>
