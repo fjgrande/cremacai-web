@@ -21,9 +21,25 @@ html {
 
 body {
 	font-family: "Poppins", sans-serif;
-	background: var(--cream);
+	background-color: var(--cream);
+	/* El degradado sólido encima de la imagen actúa como un velo semi-
+	   transparente: dos veces el mismo color crema, uno detrás del otro,
+	   con un poco de transparencia (0.88 = 88% opaco). El resultado es
+	   que el fondo se ve mucho más suave, y el texto queda legible sin
+	   importar si pasa por encima de una zona verde o crema de la foto. */
+	background-image: linear-gradient(rgba(251, 243, 228, 0.88), rgba(251, 243, 228, 0.88)),
+		url("/assets/fondo-marca.jpg");
+	background-size: cover;
+	background-position: top center;
+	background-repeat: no-repeat;
 	color: var(--ink);
 	line-height: 1.6;
+}
+
+@media (min-width: 760px) {
+	body {
+		background-attachment: fixed;
+	}
 }
 
 h1,

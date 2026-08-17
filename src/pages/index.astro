@@ -10,12 +10,15 @@ import Footer from "../components/Footer.astro";
 import { products, location } from "../data/site";
 ---
 
-<Layout title="Cremaçai — Gelats i sorbets artesanals">
+<Layout
+	title="Cremaçai — Açaí y Gelato Artesanal en Barcelona"
+	description="Cremaçai (Cremacai): açaí, gelato artesanal, bowls y shakes en Barcelona. Visítanos en Carrer d'Aragó 303."
+>
 	<Header />
 
 	<Hero
-		imageSrc="/assets/producto-real.jpg"
-		imageAlt="Bowlaçaí cremaçai con toppings, chocolate y flor comestible"
+		imageSrc="/assets/hero-principal.jpg"
+		imageAlt="Paltaçaí cremaçai con chocolate, flor comestible y decoración de rosa"
 	/>
 
 	<ProductGrid products={products} />

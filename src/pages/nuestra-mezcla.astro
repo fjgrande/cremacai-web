@@ -2,12 +2,16 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import StoryBlockSection from "../components/StoryBlock.astro";
+import FeaturedRecipe from "../components/FeaturedRecipe.astro";
 import Location from "../components/Location.astro";
 import Footer from "../components/Footer.astro";
-import { storyBlocks, location } from "../data/site";
+import { storyBlocks, featuredRecipe, location } from "../data/site";
 ---
 
-<Layout title="Cremaçai — Nuestra Mezcla">
+<Layout
+	title="Nuestra Mezcla — Cremaçai | Historia del açaí y gelato artesanal en Barcelona"
+	description="Conoce la historia de Cremaçai: inspirados por Brasil, enamorados de Italia, nacidos en Barcelona. Açaí y gelato artesanal hechos con pasión."
+>
 	<Header />
 
 	<section class="mezcla-hero">
@@ -22,6 +26,8 @@ import { storyBlocks, location } from "../data/site";
 	</section>
 
 	{storyBlocks.map((block) => <StoryBlockSection {...block} />)}
+
+	<FeaturedRecipe {...featuredRecipe} />
 
 	<section class="cta-banner">
 		<div class="wrap">

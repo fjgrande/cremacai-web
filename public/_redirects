@@ -1,0 +1,13 @@
+# cremacai.cat y cremacai.com (con y sin www, http y https) SIEMPRE
+# redirigen al dominio principal real en Netlify: cremacai.es (sin www).
+# www.cremacai.es ya redirige solo a cremacai.es de forma automatica
+# (lo hace Netlify porque cremacai.es es el Primary domain), asi que
+# aqui apuntamos directo al final, sin saltos de mas.
+https://cremacai.cat/*      https://cremacai.es/:splat  301!
+http://cremacai.cat/*       https://cremacai.es/:splat  301!
+https://cremacai.com/*      https://cremacai.es/:splat  301!
+http://cremacai.com/*       https://cremacai.es/:splat  301!
+https://www.cremacai.cat/*  https://cremacai.es/:splat  301!
+http://www.cremacai.cat/*   https://cremacai.es/:splat  301!
+https://www.cremacai.com/*  https://cremacai.es/:splat  301!
+http://www.cremacai.com/*   https://cremacai.es/:splat  301!

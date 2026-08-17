@@ -39,6 +39,21 @@ export type StoryBlock = {
 	reverse?: boolean;
 };
 
+// Sección destacada para una receta de temporada (ej. "Copa del Chef").
+// La imagen es un póster ya diseñado (con su propio texto e ilustración),
+// así que aquí solo guardamos el título corto y el enlace, no el contenido
+// interno del póster — ese vive dentro de la propia imagen.
+export type FeaturedRecipe = {
+	eyebrow: string;
+	title: string;
+	subtitle: string;
+	image: string;
+	imageAlt: string;
+	backgroundImage?: string;
+	ctaLabel: string;
+	ctaHref: string;
+};
+
 // --- Menú ---
 
 export type Locale = "ca" | "es" | "en";

@@ -1,0 +1,43 @@
+---
+import type { FeaturedRecipe } from "../data/types";
+
+interface Props extends FeaturedRecipe {}
+
+const { eyebrow, title, subtitle, image, imageAlt, backgroundImage, ctaLabel, ctaHref } = Astro.props;
+---
+
+<section class="featured" style={backgroundImage ? `--bg-image: url('${backgroundImage}')` : undefined}>
+	<div class="wrap">
+		<p class="eyebrow">{eyebrow}</p>
+		<h2>{title}</h2>
+		<p class="subtitle">{subtitle}</p>
+		<img src={image} alt={imageAlt} class="poster" />
+		<a href={ctaHref} class="btn btn-maroon">{ctaLabel} →</a>
+	</div>
+</section>
+
+<style>
+	.featured{
+		position:relative;
+		padding:56px 20px;
+		text-align:center;
+		background-color:var(--cream-2);
+		background-image:var(--bg-image, none);
+		background-size:cover;
+		background-position:center;
+		overflow:hidden;
+	}
+	.featured .wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;}
+	.featured .eyebrow{font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:8px;}
+	.featured h2{font-family:'Baloo 2',sans-serif;font-size:32px;color:var(--maroon);}
+	.featured .subtitle{font-size:14.5px;color:#5a4145;margin:8px 0 24px;font-weight:600;}
+	.featured .poster{
+		width:100%;max-width:320px;margin:0 auto 24px;border-radius:20px;
+		box-shadow:0 25px 50px rgba(107,23,48,0.25);
+	}
+
+	@media (min-width:760px){
+		.featured{padding:88px 32px;}
+		.featured .poster{max-width:360px;}
+	}
+</style>
