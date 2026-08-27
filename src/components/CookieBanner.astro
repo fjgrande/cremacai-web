@@ -1,0 +1,209 @@
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <p class="cookie-text">
+    Usamos cookies opcionales para medir visitas y mejorar la web.
+  </p>
+
+  <div class="cookie-actions">
+    <button id="reject-cookies" type="button"> Rechazar </button>
+
+    <button id="accept-cookies" type="button"> Aceptar </button>
+  </div>
+</div>
+
+<script is:inline>
+  const CONSENT_KEY = "cremacai_cookie_consent";
+  const GA_ID = "G-K9L9SVYDGD";
+
+  // Recuperamos una decisión anterior, si existe.
+  const savedConsent = localStorage.getItem(CONSENT_KEY);
+
+  // Google utiliza dataLayer para recibir instrucciones.
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  window.gtag = gtag;
+
+  // -------------------------------------------------------
+  // 1. ESTADO DE CONSENTIMIENTO
+  // -------------------------------------------------------
+  //
+  // Si el usuario ya aceptó anteriormente:
+  //     analytics_storage = granted
+  //
+  // Si rechazó o todavía no ha decidido:
+  //     todo permanece en denied.
+  //
+  // Importante: esto ocurre ANTES de cargar la etiqueta
+  // de Google.
+  // -------------------------------------------------------
+
+  const hasAccepted = savedConsent === "accepted";
+
+  gtag("consent", "default", {
+    analytics_storage: hasAccepted ? "granted" : "denied",
+
+    // Los dejamos denegados porque todavía no
+    // estamos utilizando Google Ads.
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+
+  // -------------------------------------------------------
+  // 2. CARGAMOS GOOGLE ANALYTICS SIEMPRE
+  // -------------------------------------------------------
+  //
+  // Esto convierte la implementación en Consent Mode
+  // avanzado.
+  //
+  // Si analytics_storage está en denied, Google no puede
+  // usar cookies analíticas normales.
+  // -------------------------------------------------------
+
+  gtag("js", new Date());
+
+  gtag("config", GA_ID);
+
+  const googleScript = document.createElement("script");
+  googleScript.async = true;
+  googleScript.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+
+  document.head.appendChild(googleScript);
+
+  // -------------------------------------------------------
+  // 3. BANNER
+  // -------------------------------------------------------
+
+  const banner = document.getElementById("cookie-banner");
+  const acceptButton = document.getElementById("accept-cookies");
+  const rejectButton = document.getElementById("reject-cookies");
+
+  // Solo mostramos el banner si todavía no existe decisión.
+  if (savedConsent === null) {
+    banner.hidden = false;
+  }
+
+  // -------------------------------------------------------
+  // 4. ACEPTAR
+  // -------------------------------------------------------
+
+  acceptButton?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+
+    gtag("consent", "update", {
+      analytics_storage: "granted",
+    });
+
+    banner.hidden = true;
+  });
+
+  // -------------------------------------------------------
+  // 5. RECHAZAR
+  // -------------------------------------------------------
+
+  rejectButton?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "rejected");
+
+    gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+
+    banner.hidden = true;
+  });
+</script>
+
+<style>
+  /*
+	 * MOBILE FIRST
+	 *
+	 * En móvil queremos una tarjeta pequeña que no bloquee
+	 * la página ni dé sensación de popup obligatorio.
+	 */
+
+  .cookie-banner {
+    position: fixed;
+
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+
+    z-index: 1000;
+
+    padding: 14px;
+
+    background: var(--cream);
+
+    border: 1px solid rgba(107, 23, 48, 0.14);
+    border-radius: 16px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+
+    max-width: 460px;
+  }
+
+  .cookie-text {
+    margin: 0 0 12px;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    color: var(--ink);
+  }
+
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .cookie-actions button {
+    min-height: 44px;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+    border: 1px solid var(--maroon);
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+  }
+
+  #reject-cookies {
+    background: transparent;
+    color: var(--maroon);
+  }
+
+  #accept-cookies {
+    background: var(--maroon);
+    color: white;
+  }
+
+  /*
+	 * TABLET / ESCRITORIO
+	 */
+
+  @media (min-width: 600px) {
+    .cookie-banner {
+      left: 20px;
+      right: auto;
+      bottom: 20px;
+
+      width: 420px;
+
+      padding: 16px;
+    }
+
+    .cookie-text {
+      font-size: 13.5px;
+    }
+  }
+</style>

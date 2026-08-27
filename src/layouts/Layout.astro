@@ -1,16 +1,17 @@
 ---
 import "../styles/global.css";
+import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
-	title: string;
-	description?: string;
-	image?: string; // para compartir en redes (Open Graph) — opcional
+  title: string;
+  description?: string;
+  image?: string; // para compartir en redes (Open Graph) — opcional
 }
 
 const {
-	title,
-	description = "Cremaçai (Cremacai): açaí, gelato artesanal, bowls y shakes en Barcelona. Visítanos en Carrer d'Aragó 303.",
-	image = "/assets/hero-principal.jpg",
+  title,
+  description = "Cremaçai (Cremacai): açaí, gelato artesanal, bowls y shakes en Barcelona. Visítanos en Carrer d'Aragó 303.",
+  image = "/assets/hero-principal.jpg",
 } = Astro.props;
 
 // Astro.site viene de "site" en astro.config.mjs (cremacai.es). Con
@@ -28,82 +29,85 @@ const ogImageURL = new URL(image, Astro.site);
 // redes sociales y dónde está el menú. Esto es justo lo que ayuda a que
 // Google muestre la ficha correcta al buscar "cremacai" o "cremaçai".
 const structuredData = {
-	"@context": "https://schema.org",
-	"@type": "IceCreamShop",
-	"@id": "https://cremacai.es/#negocio",
-	name: "Cremaçai",
-	alternateName: ["Cremacai", "Crema Sai", "Cremaçaí", "Crema Açai"],
-	description:
-		"Açaí y gelato artesanal en Barcelona.",
-	keywords: "açaí Barcelona, heladería Barcelona, gelato artesanal Barcelona, bowl de açaí",
-	image: ogImageURL.toString(),
-	url: "https://cremacai.es",
-	telephone: "",
-	priceRange: "€€",
-	servesCuisine: ["Açaí", "Gelato artesanal", "Sorbetes"],
-	areaServed: {
-		"@type": "City",
-		name: "Barcelona",
-	},
-	address: {
-		"@type": "PostalAddress",
-		streetAddress: "Carrer d'Aragó, 303",
-		addressLocality: "Barcelona",
-		postalCode: "08009",
-		addressRegion: "Catalunya",
-		addressCountry: "ES",
-	},
-	geo: {
-		"@type": "GeoCoordinates",
-		latitude: 41.3948104,
-		longitude: 2.1681261,
-	},
-	openingHoursSpecification: {
-		"@type": "OpeningHoursSpecification",
-		dayOfWeek: [
-			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-		],
-		opens: "09:00",
-		closes: "23:00",
-	},
-	hasMenu: "https://cremacai.es/menu",
-	sameAs: ["https://www.instagram.com/cremacai/"],
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  "@id": "https://cremacai.es/#negocio",
+  name: "Cremaçai",
+  alternateName: ["Cremacai", "Crema Sai", "Cremaçaí", "Crema Açai"],
+  description: "Açaí y gelato artesanal en Barcelona.",
+  keywords:
+    "açaí Barcelona, heladería Barcelona, gelato artesanal Barcelona, bowl de açaí",
+  image: ogImageURL.toString(),
+  url: "https://cremacai.es",
+  telephone: "",
+  priceRange: "€€",
+  servesCuisine: ["Açaí", "Gelato artesanal", "Sorbetes"],
+  areaServed: {
+    "@type": "City",
+    name: "Barcelona",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Carrer d'Aragó, 303",
+    addressLocality: "Barcelona",
+    postalCode: "08009",
+    addressRegion: "Catalunya",
+    addressCountry: "ES",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.3948104,
+    longitude: 2.1681261,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "23:00",
+  },
+  hasMenu: "https://cremacai.es/menu",
+  sameAs: ["https://www.instagram.com/cremacai/"],
 };
 ---
 
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<link rel="canonical" href={canonicalURL} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
 
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap"
-			rel="stylesheet"
-		/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-		<!-- Open Graph: cómo se ve el enlace al compartirlo en WhatsApp, Instagram, Facebook... -->
-		<meta property="og:type" content="website" />
-		<meta property="og:site_name" content="Cremaçai" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={ogImageURL} />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:locale" content="es_ES" />
-		<meta name="twitter:card" content="summary_large_image" />
+    <!-- Open Graph: cómo se ve el enlace al compartirlo en WhatsApp, Instagram, Facebook... -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cremaçai" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-		<!-- Datos estructurados: JSON.stringify convierte el objeto de arriba
+    <!-- Datos estructurados: JSON.stringify convierte el objeto de arriba
 		     en texto JSON, y set:html lo inserta tal cual (es contenido que
 		     generamos nosotros mismos, no un usuario, así que es seguro). -->
-		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />
-	</head>
-	<body>
-		<slot />
-	</body>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+      is:inline
+    />
+  </head>
+  <body>
+    <slot />
+    <CookieBanner />
+  </body>
 </html>
