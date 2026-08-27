@@ -33,13 +33,13 @@ const structuredData = {
   "@type": "IceCreamShop",
   "@id": "https://cremacai.es/#negocio",
   name: "Cremaçai",
-  alternateName: ["Cremacai", "Crema Sai", "Cremaçaí", "Crema Açai"],
+  alternateName: ["Cremacai", "Cremaçaí"],
   description: "Açaí y gelato artesanal en Barcelona.",
   keywords:
     "açaí Barcelona, heladería Barcelona, gelato artesanal Barcelona, bowl de açaí",
   image: ogImageURL.toString(),
   url: "https://cremacai.es",
-  telephone: "",
+  telephone: "+34614554039",
   priceRange: "€€",
   servesCuisine: ["Açaí", "Gelato artesanal", "Sorbetes"],
   areaServed: {
@@ -59,13 +59,21 @@ const structuredData = {
     latitude: 41.3948104,
     longitude: 2.1681261,
   },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "09:00",
-    closes: "23:00",
-  },
-  hasMenu: "https://cremacai.es/menu",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "10:30",
+      closes: "23:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday", "Sunday"],
+      opens: "12:00",
+      closes: "23:00",
+    },
+  ],
+  menu: "https://cremacai.es/menu/",
   sameAs: ["https://www.instagram.com/cremacai/"],
 };
 ---
@@ -111,3 +119,4 @@ const structuredData = {
     <CookieBanner />
   </body>
 </html>
+h
