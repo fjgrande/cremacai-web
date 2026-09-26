@@ -84,15 +84,15 @@ const structuredData = {
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
+      window.gtag = function () {
         window.dataLayer.push(arguments);
-      }
+      };
 
       const savedConsent = localStorage.getItem("cremacai_cookie_consent");
 
       const consentGranted = savedConsent === "accepted";
 
-      gtag("consent", "default", {
+      window.gtag("consent", "default", {
         ad_storage: consentGranted ? "granted" : "denied",
         analytics_storage: consentGranted ? "granted" : "denied",
         ad_user_data: consentGranted ? "granted" : "denied",
@@ -106,6 +106,7 @@ const structuredData = {
     <script is:inline>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
+
         w[l].push({
           "gtm.start": new Date().getTime(),
           event: "gtm.js",
